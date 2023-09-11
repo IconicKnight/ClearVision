@@ -17,7 +17,7 @@ export const goalSlice = createSlice({
     
 })
 
-console.log(createSlice)
+
 
 export const { reset } = goalSlice.actions
 export default goalSlice.reducer
