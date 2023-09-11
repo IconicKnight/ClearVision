@@ -16,7 +16,7 @@ const getGoals = asyncHander(async (req, res) => {
 
 
 
-//@desc    set goal
+//@desc    Set goal
 //@route   POST /api/goals
 //@access  Private  
 const setGoal = asyncHander(async (req, res) => {
@@ -37,7 +37,7 @@ const setGoal = asyncHander(async (req, res) => {
 
 
 //@desc    Update goal
-//@route   Get /api/goals/:id
+//@route   PUT /api/goals/:id
 //@access  Private  
 const updateGoal = asyncHander(async (req, res) => {
     const goal = await Goal.findById(req.params.id)
@@ -47,17 +47,17 @@ const updateGoal = asyncHander(async (req, res) => {
         throw new Error('goal not found')
     }
 
-    const user = await User.findById(req.user.id)
+    
 
     // Check for user
-    if (!user) {
+    if (!req.user) {
         res.status(401)
         throw new Error('User not found')
     }
 
 
     // Make sure the logged in user matches the goal user
-    if (goal.user.toString() !== user.id) {
+    if (goal.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }
@@ -83,17 +83,17 @@ const deleteGoal = asyncHander(async (req, res) => {
         throw new Error('goal not found')
     }
 
-    const user = await User.findById(req.user.id)
+    
 
     // Check for user
-    if (!user) {
+    if (!req.user) {
         res.status(401)
         throw new Error('User not found')
     }
 
 
     // Make sure the logged in user matches the goal user
-    if (goal.user.toString() !== user.id) {
+    if (goal.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }

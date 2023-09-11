@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend"
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \" npm run client\""
   },
   "author": "Eric Hartman",
   "license": "MIT",
@@ -19,5 +20,9 @@
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.3",
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "concurrently": "^8.2.1"
   }
 }
